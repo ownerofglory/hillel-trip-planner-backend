@@ -19,4 +19,4 @@ jobs:
           java-version: '17'
           cache: maven
       - name: Run Tests
-        run: mvn --batch-mode tes
+        run: mvn --batch-mode test
