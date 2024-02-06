@@ -1,6 +1,7 @@
 package ua.ithillel.tripplanner.repo;
 
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.TypedQuery;
 import lombok.RequiredArgsConstructor;
 import ua.ithillel.tripplanner.model.entity.User;
 
@@ -28,6 +29,16 @@ public class UserMySqlJpaRepo implements UserRepo {
     @Override
     public User find(Long id) {
         return entityManager.find(User.class, id);
+    }
+
+    @Override
+    public User findByEmail(String email) {
+        final TypedQuery<User> query =
+                entityManager.createQuery("SELECT u FROM User u WHERE email = :email", User.class);
+
+        query.setParameter("email", email);
+        final User singleResult = query.getSingleResult();
+        return singleResult;
     }
 
     @Override

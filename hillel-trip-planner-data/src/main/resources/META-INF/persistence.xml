@@ -11,6 +11,8 @@
         <class>ua.ithillel.tripplanner.model.entity.User</class>
         <class>ua.ithillel.tripplanner.model.entity.Hotel</class>
         <class>ua.ithillel.tripplanner.model.entity.HotelBooking</class>
+        <class>ua.ithillel.tripplanner.model.entity.HotelRoom</class>
+        <class>ua.ithillel.tripplanner.model.entity.Address</class>
 
         <properties>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver" />

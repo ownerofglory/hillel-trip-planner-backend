@@ -2,12 +2,10 @@ package ua.ithillel.tripplanner.model.entity;
 
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.Date;
+import java.util.List;
 
 @Data
 @Entity(name = "User") // not a table name
@@ -15,6 +13,7 @@ import java.util.Date;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString(exclude = {"bookings"})
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,4 +22,10 @@ public class User {
     private String email;
     @Column(name = "birth_date")
     private Date birthDate;
+
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    private Address address;
+
+    @OneToMany(mappedBy = "user")
+    private List<HotelBooking> bookings;
 }
