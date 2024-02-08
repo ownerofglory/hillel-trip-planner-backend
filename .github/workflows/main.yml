@@ -18,5 +18,7 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
           cache: maven
-      - name: Run Tests
+      - name: Make Maven Wrapper Executable
+        run: chmod +x mvnw
+      - name: Run Tests with Maven Wrapper
         run: ./mvnw --batch-mode test
