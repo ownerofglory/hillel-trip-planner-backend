@@ -42,8 +42,19 @@ public class UserMySqlJpaRepo implements UserRepo {
     }
 
     @Override
-    public User remove(Long id) {
+    public User remove(User user) {
+        try {
+            entityManager.getTransaction().begin();
 
-        return null;
+            entityManager.remove(user);
+            entityManager.flush();
+
+            entityManager.getTransaction().commit();
+
+            return user;
+        } catch (Exception e) {
+            entityManager.getTransaction().rollback();
+            return null;
+        }
     }
 }

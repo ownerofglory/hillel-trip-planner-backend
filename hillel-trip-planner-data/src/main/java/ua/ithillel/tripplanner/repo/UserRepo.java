@@ -6,5 +6,5 @@ public interface UserRepo {
     User save(User user);
     User find(Long id);
     User findByEmail(String email);
-    User remove(Long id);
+    User remove(User user);
 }

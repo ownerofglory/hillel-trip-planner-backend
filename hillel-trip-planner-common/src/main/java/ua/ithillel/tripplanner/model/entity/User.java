@@ -23,9 +23,9 @@ public class User {
     @Column(name = "birth_date")
     private Date birthDate;
 
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "user", cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
     private Address address;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<HotelBooking> bookings;
 }

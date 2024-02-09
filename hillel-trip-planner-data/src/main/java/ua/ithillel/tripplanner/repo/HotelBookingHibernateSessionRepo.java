@@ -3,23 +3,19 @@ package ua.ithillel.tripplanner.repo;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.query.Query;
-import ua.ithillel.tripplanner.model.entity.Hotel;
-
-import java.util.List;
+import ua.ithillel.tripplanner.model.entity.HotelBooking;
 
 @RequiredArgsConstructor
-public class HotelHibernateSessionRepo implements HotelRepo {
+public class HotelBookingHibernateSessionRepo implements HotelBookingRepo {
     private final Session session;
 
     @Override
-    public Hotel save(Hotel hotel) {
+    public HotelBooking save(HotelBooking hotelBooking) {
         Transaction tx = null;
         try {
             tx = session.beginTransaction();
 
-            session.persist(hotel);
+            session.persist(hotelBooking);
             session.flush();
 
             tx.commit();
@@ -29,27 +25,21 @@ public class HotelHibernateSessionRepo implements HotelRepo {
             }
         }
 
-        return hotel;
+        return hotelBooking;
     }
 
     @Override
-    public Hotel find(Long id) {
-        return session.find(Hotel.class, id);
+    public HotelBooking findById(Long id) {
+        return session.find(HotelBooking.class, id);
     }
 
     @Override
-    public List<Hotel> findAll() {
-        final Query<Hotel> query = session.createQuery("SELECT h FROM Hotel h", Hotel.class);
-        return query.getResultList();
-    }
-
-    @Override
-    public Hotel remove(Hotel hotel) {
+    public HotelBooking remove(HotelBooking hotelBooking) {
         Transaction tx = null;
         try {
             tx = session.beginTransaction();
 
-            session.remove(hotel);
+            session.remove(hotelBooking);
             session.flush();
 
             tx.commit();
@@ -59,6 +49,6 @@ public class HotelHibernateSessionRepo implements HotelRepo {
             }
         }
 
-        return hotel;
+        return hotelBooking;
     }
 }

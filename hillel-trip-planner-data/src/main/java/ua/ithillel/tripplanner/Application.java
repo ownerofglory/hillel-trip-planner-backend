@@ -9,12 +9,10 @@ import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import ua.ithillel.tripplanner.model.entity.*;
-import ua.ithillel.tripplanner.repo.HotelHibernateSessionRepo;
-import ua.ithillel.tripplanner.repo.HotelRepo;
-import ua.ithillel.tripplanner.repo.UserMySqlJpaRepo;
-import ua.ithillel.tripplanner.repo.UserRepo;
+import ua.ithillel.tripplanner.repo.*;
 
-import java.util.ArrayList;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.util.Date;
 import java.util.List;
 
@@ -46,22 +44,20 @@ public class Application {
         ) {
 
 
-
-
-            HotelRepo hotelRepo = new HotelHibernateSessionRepo(session);
-
-            final Hotel hotel = new Hotel();
-            hotel.setName("Some hotel");
-            hotel.setDescription("Some hotel description");
-            hotel.setPhoneNumber("+1111111");
-
-            final HotelRoom hotelRoom = new HotelRoom();
-            hotelRoom.setCapacity(4);
-            hotelRoom.setPrice(100);
-
-            hotel.addHotelRoom(hotelRoom);
-
-            final Hotel savedHotel = hotelRepo.save(hotel);
+//            HotelRepo hotelRepo = new HotelHibernateSessionRepo(session);
+//
+//            final Hotel hotel = new Hotel();
+//            hotel.setName("Some hotel");
+//            hotel.setDescription("Some hotel description");
+//            hotel.setPhoneNumber("+1111111");
+//
+//            final HotelRoom hotelRoom = new HotelRoom();
+//            hotelRoom.setCapacity(4);
+//            hotelRoom.setPrice(100);
+//
+//            hotel.addHotelRoom(hotelRoom);
+//
+//            final Hotel savedHotel = hotelRepo.save(hotel);
 
 
 //            final User user1 = new User();
@@ -91,9 +87,33 @@ public class Application {
 
 
 
-            UserRepo userRepo = new UserMySqlJpaRepo(entityManager);
+//            UserRepo userRepo = new UserMySqlJpaRepo(entityManager);
+            UserRepo userRepo = new UserHibernateSessionRepo(session);
+            HotelRepo hotelRepo = new HotelHibernateSessionRepo(session);
+            HotelBookingRepo hotelBookingRepo = new HotelBookingHibernateSessionRepo(session);
+
+            final List<Hotel> all = hotelRepo.findAll();
+
 
             final User byEmail = userRepo.findByEmail("dmytroivanov@example.com");
+
+
+
+
+            final Hotel hotel = hotelRepo.find(1L);
+
+            final HotelBooking hotelBooking = new HotelBooking();
+            final HotelRoom hotelRoom = hotel.getHotelRooms().get(0);
+            hotelBooking.setHotelRoom(hotelRoom);
+            hotelBooking.setUser(byEmail);
+            hotelBooking.setCheckinDate(new Date());
+
+            final LocalDateTime localDateTime = LocalDateTime.of(2024, 02, 23, 12, 01, 01);
+
+            hotelBooking.setCheckoutDate(Date.from(localDateTime.toInstant(ZoneOffset.UTC)));
+
+            final HotelBooking savedBooking = hotelBookingRepo.save(hotelBooking);
+
 
             final User user = userRepo.find(2L);
 

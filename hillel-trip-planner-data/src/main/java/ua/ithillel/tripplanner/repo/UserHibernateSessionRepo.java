@@ -1,25 +1,22 @@
 package ua.ithillel.tripplanner.repo;
 
+import jakarta.persistence.TypedQuery;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.query.Query;
-import ua.ithillel.tripplanner.model.entity.Hotel;
-
-import java.util.List;
+import ua.ithillel.tripplanner.model.entity.User;
 
 @RequiredArgsConstructor
-public class HotelHibernateSessionRepo implements HotelRepo {
+public class UserHibernateSessionRepo implements UserRepo {
     private final Session session;
 
     @Override
-    public Hotel save(Hotel hotel) {
+    public User save(User user) {
         Transaction tx = null;
         try {
             tx = session.beginTransaction();
 
-            session.persist(hotel);
+            session.persist(user);
             session.flush();
 
             tx.commit();
@@ -29,27 +26,31 @@ public class HotelHibernateSessionRepo implements HotelRepo {
             }
         }
 
-        return hotel;
+        return user;
     }
 
     @Override
-    public Hotel find(Long id) {
-        return session.find(Hotel.class, id);
+    public User find(Long id) {
+        return session.find(User.class, id);
     }
 
     @Override
-    public List<Hotel> findAll() {
-        final Query<Hotel> query = session.createQuery("SELECT h FROM Hotel h", Hotel.class);
-        return query.getResultList();
+    public User findByEmail(String email) {
+        final TypedQuery<User> query =
+                session.createQuery("SELECT u FROM User u WHERE email = :email", User.class);
+
+        query.setParameter("email", email);
+        final User singleResult = query.getSingleResult();
+        return singleResult;
     }
 
     @Override
-    public Hotel remove(Hotel hotel) {
+    public User remove(User user) {
         Transaction tx = null;
         try {
             tx = session.beginTransaction();
 
-            session.remove(hotel);
+            session.remove(user);
             session.flush();
 
             tx.commit();
@@ -59,6 +60,6 @@ public class HotelHibernateSessionRepo implements HotelRepo {
             }
         }
 
-        return hotel;
+        return user;
     }
 }
