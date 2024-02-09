@@ -3,13 +3,15 @@ package ua.ithillel.tripplanner.repo;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.annotations.Fetch;
 import org.hibernate.query.Query;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 import ua.ithillel.tripplanner.model.entity.Hotel;
 
 import java.util.List;
 
 @RequiredArgsConstructor
+@Repository
 public class HotelHibernateSessionRepo implements HotelRepo {
     private final Session session;
 
