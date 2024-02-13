@@ -2,7 +2,6 @@ package ua.ithillel.tripplanner.repo;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -20,17 +19,14 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-public class UserMySqlJpaRepoTest {
+public class UserMySqlJpaRepoTest extends RepoTestParent {
     private UserRepo userRepo;
-    private SessionFactory testSessionFactory;
     private EntityManager testEntityManager;
 
     @BeforeEach
     public void setUp() {
-        testSessionFactory = new HibernateTestConfig().sessionFactory();
         testEntityManager = testSessionFactory.createEntityManager();
 
-        initTestData();
 
         userRepo = new UserMySqlJpaRepo(testEntityManager);
     }
@@ -79,26 +75,6 @@ public class UserMySqlJpaRepoTest {
     @AfterEach
     public void tearDown() {
         testEntityManager.close();
-        testSessionFactory.close();
     }
 
-    private void initTestData() {
-        if (testEntityManager != null) {
-            try (final InputStream inputStream = getClass()
-                    .getClassLoader()
-                    .getResourceAsStream("data.sql");
-                 BufferedReader br = new BufferedReader(new InputStreamReader(inputStream))
-            ) {
-
-                testEntityManager.getTransaction().begin();
-                final Optional<String> scriptOpt = br.lines().reduce((acc, line) -> acc + line + "\n");
-
-                final Query nativeQuery = testEntityManager.createNativeQuery(scriptOpt.get());
-                nativeQuery.executeUpdate();
-                testEntityManager.getTransaction().commit();
-            } catch (IOException e) {
-                testEntityManager.getTransaction().rollback();
-            }
-        }
-    }
 }
