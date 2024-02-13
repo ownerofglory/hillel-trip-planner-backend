@@ -1,0 +1,19 @@
+name: Hillel Tripplanner sonarQube pipeline
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Maven Central Repository
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+      - name: Publish package
+        run: mvn clean verify sonar:sonar -Dsonar.projectKey=${{ secrets.SONAR_KEY }} -Dsonar.projectName=${{ secrets.SONAR_NAME }} -Dsonar.host.url=${{ secrets.SONAR_URL }} -Dsonar.token=${{ secrets.SONAR_TOKEN }}
