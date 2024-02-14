@@ -3,7 +3,7 @@ name: Hillel Tripplanner sonarQube pipeline
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   publish:
