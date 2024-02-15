@@ -22,6 +22,7 @@
         <junit.version>5.10.1</junit.version>
         <mockito.version>5.8.0</mockito.version>
         <jacoco.version>0.8.11</jacoco.version>
+        <sonarqube.version>3.7.0.1746</sonarqube.version>
         <surefire-plugin.version>3.2.5</surefire-plugin.version>
         <lombok.version>1.18.30</lombok.version>
         <hibernate.version>6.4.2.Final</hibernate.version>
@@ -124,6 +125,11 @@
                             </goals>
                         </execution>
                     </executions>
+                </plugin>
+                <plugin>
+                    <groupId>org.sonarsource.scanner.maven</groupId>
+                    <artifactId>sonar-maven-plugin</artifactId>
+                    <version>${sonarqube.version}</version>
                 </plugin>
             </plugins>
         </pluginManagement>
