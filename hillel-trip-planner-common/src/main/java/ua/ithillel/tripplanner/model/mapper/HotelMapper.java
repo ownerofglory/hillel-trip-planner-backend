@@ -11,5 +11,4 @@ public interface HotelMapper {
     Hotel hotelDTOToHotel(HotelDTO dto);
     HotelDTO hotelToHotelDTO(Hotel hotel);
     HotelListItemDTO hotelToHotelListViewDTO(Hotel hotel);
-
 }

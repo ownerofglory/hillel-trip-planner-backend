@@ -3,6 +3,7 @@ package ua.ithillel.tripplanner;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import ua.ithillel.tripplanner.model.dto.HotelDTO;
+import ua.ithillel.tripplanner.model.dto.HotelListItemDTO;
 import ua.ithillel.tripplanner.service.HotelService;
 
 import java.util.List;
@@ -18,7 +19,7 @@ public class Application {
         final HotelService hotelService1 = annoContext.getBean(HotelService.class);
 //        final HotelService hotelService2 = annoContext.getBean(HotelService.class);
 
-        final List<HotelDTO> allHotels = hotelService1.getAllHotels();
+        final List<HotelListItemDTO> allHotels = hotelService1.getAllHotels();
 
         System.out.println();
     }

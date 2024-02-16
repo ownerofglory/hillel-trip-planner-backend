@@ -3,6 +3,9 @@ package ua.ithillel.tripplanner.model.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.ToString;
+import ua.ithillel.tripplanner.model.dto.HotelBookingDTO;
+
+import java.util.List;
 
 @Entity(name = "HotelRoom")
 @Table(name = "t_hotel_room")
@@ -18,4 +21,7 @@ public class HotelRoom {
     @ManyToOne
     @JoinColumn(name = "hotel_id")
     private Hotel hotel;
+
+    @OneToMany(mappedBy = "hotelRoom", fetch = FetchType.LAZY)
+    private List<HotelBooking> bookings;
 }

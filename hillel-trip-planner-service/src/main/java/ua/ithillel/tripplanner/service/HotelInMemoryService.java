@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 import ua.ithillel.tripplanner.client.ExternalHotelClient;
 import ua.ithillel.tripplanner.model.dto.HotelDTO;
+import ua.ithillel.tripplanner.model.dto.HotelListItemDTO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,10 +22,20 @@ public class HotelInMemoryService implements HotelService {
 //        this.externalHotelClient = externalHotelClient;
 //    }
 
-    private List<HotelDTO> hotels = new ArrayList<>();
+    private List<HotelListItemDTO> hotels = new ArrayList<>();
 
     @Override
-    public List<HotelDTO> getAllHotels() {
+    public List<HotelListItemDTO> getAllHotels() {
         return hotels;
+    }
+
+    @Override
+    public List<HotelListItemDTO> searchHotels(int limit, int page) {
+        return null;
+    }
+
+    @Override
+    public HotelDTO getHotelById(Long id) {
+        return null;
     }
 }
