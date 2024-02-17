@@ -4,9 +4,15 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Import;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import ua.ithillel.tripplanner.config.HibernateTestConfig;
 import ua.ithillel.tripplanner.model.entity.User;
 
@@ -20,17 +26,13 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-public class UserHibernateSessionRepoTest {
+public class UserHibernateSessionRepoTest extends RepoTestParent {
     private UserRepo userRepo;
-    private SessionFactory testSessionFactory;
     private Session testSession;
 
     @BeforeEach
     public void setUp() {
-        testSessionFactory = new HibernateTestConfig().sessionFactory();
         testSession = testSessionFactory.openSession();
-
-        initTestData();
 
         userRepo = new UserHibernateSessionRepo(testSession);
     }
@@ -79,28 +81,7 @@ public class UserHibernateSessionRepoTest {
     @AfterEach
     public void tearDown() {
         testSession.close();
-        testSessionFactory.close();
+//        testSessionFactory.close();
     }
 
-    private void initTestData() {
-        if (testSession != null) {
-            final EntityManager entityManager = testSessionFactory.createEntityManager();
-
-            try (final InputStream inputStream = getClass()
-                    .getClassLoader()
-                    .getResourceAsStream("data.sql");
-                 BufferedReader br = new BufferedReader(new InputStreamReader(inputStream))
-            ) {
-
-                entityManager.getTransaction().begin();
-                final Optional<String> scriptOpt = br.lines().reduce((acc, line) -> acc + line + "\n");
-
-                final Query nativeQuery = entityManager.createNativeQuery(scriptOpt.get());
-                nativeQuery.executeUpdate();
-                entityManager.getTransaction().commit();
-            } catch (IOException e) {
-                entityManager.getTransaction().rollback();
-            }
-        }
-    }
 }
