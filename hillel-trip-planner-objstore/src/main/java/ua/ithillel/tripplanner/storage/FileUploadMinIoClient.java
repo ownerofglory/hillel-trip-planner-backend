@@ -6,6 +6,7 @@ import io.minio.PutObjectArgs;
 import io.minio.errors.*;
 import org.springframework.stereotype.Service;
 import ua.ithillel.tripplanner.config.MinioBucketInfo;
+import ua.ithillel.tripplanner.exception.FileUploadException;
 import ua.ithillel.tripplanner.model.dto.FileUploadDTO;
 import ua.ithillel.tripplanner.model.dto.FileUploadResultDTO;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +22,7 @@ public class FileUploadMinIoClient implements FileUploadClient {
     private final MinioBucketInfo minioBucketInfo;
 
     @Override
-    public FileUploadResultDTO uploadFile(FileUploadDTO fileUploadDTO) {
+    public FileUploadResultDTO uploadFile(FileUploadDTO fileUploadDTO) throws FileUploadException {
         try {
             PutObjectArgs putObjectArgs = createPutObjectArgs(fileUploadDTO);
             ObjectWriteResponse writeResponse = minioClient.putObject(putObjectArgs);
@@ -30,7 +31,7 @@ public class FileUploadMinIoClient implements FileUploadClient {
         } catch (ServerException | InsufficientDataException | ErrorResponseException | IOException |
                  NoSuchAlgorithmException | InvalidKeyException | InvalidResponseException | XmlParserException |
                  InternalException e) {
-            throw new RuntimeException(e);
+            throw new FileUploadException(e.getMessage(), fileUploadDTO);
         }
     }
 
