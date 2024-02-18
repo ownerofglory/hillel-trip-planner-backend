@@ -19,17 +19,13 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class HotelHibernateSessionRepoTest {
+public class HotelHibernateSessionRepoTest extends RepoTestParent {
     private HotelRepo hotelRepo;
-    private SessionFactory testSessionFactory;
     private Session testSession;
 
     @BeforeEach
     public void setUp() {
-        testSessionFactory = new HibernateTestConfig().sessionFactory();
         testSession = testSessionFactory.openSession();
-
-        initTestData();
 
         hotelRepo = new HotelHibernateSessionRepo(testSession);
     }
@@ -82,28 +78,6 @@ public class HotelHibernateSessionRepoTest {
     @AfterEach
     public void tearDown() {
         testSession.close();
-        testSessionFactory.close();
     }
 
-    private void initTestData() {
-        if (testSession != null) {
-            final EntityManager entityManager = testSessionFactory.createEntityManager();
-
-            try (final InputStream inputStream = getClass()
-                    .getClassLoader()
-                    .getResourceAsStream("data.sql");
-                 BufferedReader br = new BufferedReader(new InputStreamReader(inputStream))
-            ) {
-
-                entityManager.getTransaction().begin();
-                final Optional<String> scriptOpt = br.lines().reduce((acc, line) -> acc + line + "\n");
-
-                final Query nativeQuery = entityManager.createNativeQuery(scriptOpt.get());
-                nativeQuery.executeUpdate();
-                entityManager.getTransaction().commit();
-            } catch (IOException e) {
-                entityManager.getTransaction().rollback();
-            }
-        }
-    }
 }

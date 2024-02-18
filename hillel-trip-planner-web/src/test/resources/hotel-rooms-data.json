@@ -1,0 +1,117 @@
+[
+  {
+    "id": 101,
+    "capacity": 2,
+    "price": 150.0,
+    "bookings": [
+      {
+        "id": 1,
+        "checkinDate": "2024-03-15",
+        "checkoutDate": "2024-03-20",
+        "user": {
+          "id": 1,
+          "name": "Oleksandr Ivanov",
+          "email": "oleksandr.ivanov@example.com",
+          "birthDate": "1990-04-12"
+        },
+        "guests": [
+          {
+            "id": 2,
+            "name": "Iryna Zaharchenko",
+            "email": "iryna.zaharchenko@example.com"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 102,
+    "capacity": 4,
+    "price": 200.0,
+    "bookings": [
+      {
+        "id": 2,
+        "checkinDate": "2024-04-05",
+        "checkoutDate": "2024-04-10",
+        "user": {
+          "id": 3,
+          "name": "Vladyslav Melnyk",
+          "email": "vladyslav.melnyk@example.com",
+          "birthDate": "1992-11-30"
+        },
+        "guests": [
+          {
+            "id": 4,
+            "name": "Kateryna Petrova",
+            "email": "kateryna.petrova@example.com"
+          },
+          {
+            "id": 5,
+            "name": "Olena Bondarenko",
+            "email": "olena.bondarenko@example.com"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 103,
+    "capacity": 3,
+    "price": 180.0,
+    "bookings": [
+      {
+        "id": 3,
+        "checkinDate": "2024-05-10",
+        "checkoutDate": "2024-05-15",
+        "user": {
+          "id": 6,
+          "name": "Anastasia Shevchenko",
+          "email": "anastasia.shevchenko@example.com",
+          "birthDate": "1989-09-19"
+        },
+        "guests": [
+          {
+            "id": 7,
+            "name": "Yaroslav Tkachenko",
+            "email": "yaroslav.tkachenko@example.com"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 104,
+    "capacity": 1,
+    "price": 100.0
+  },
+  {
+    "id": 105,
+    "capacity": 5,
+    "price": 250.0
+  },
+  {
+    "id": 106,
+    "capacity": 2,
+    "price": 120.0
+  },
+  {
+    "id": 107,
+    "capacity": 4,
+    "price": 210.0
+  },
+  {
+    "id": 108,
+    "capacity": 6,
+    "price": 300.0
+  },
+  {
+    "id": 109,
+    "capacity": 3,
+    "price": 160.0
+  },
+  {
+    "id": 110,
+    "capacity": 2,
+    "price": 140.0
+  }
+]

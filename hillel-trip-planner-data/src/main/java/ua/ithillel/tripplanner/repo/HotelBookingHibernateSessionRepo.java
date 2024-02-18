@@ -3,9 +3,11 @@ package ua.ithillel.tripplanner.repo;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.springframework.stereotype.Repository;
 import ua.ithillel.tripplanner.model.entity.HotelBooking;
 
 @RequiredArgsConstructor
+@Repository
 public class HotelBookingHibernateSessionRepo implements HotelBookingRepo {
     private final Session session;
 

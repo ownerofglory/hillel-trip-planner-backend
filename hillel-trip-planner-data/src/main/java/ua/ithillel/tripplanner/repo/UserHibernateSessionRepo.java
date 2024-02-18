@@ -4,9 +4,13 @@ import jakarta.persistence.TypedQuery;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.springframework.context.annotation.Primary;
+import org.springframework.stereotype.Repository;
 import ua.ithillel.tripplanner.model.entity.User;
 
 @RequiredArgsConstructor
+@Primary
+@Repository
 public class UserHibernateSessionRepo implements UserRepo {
     private final Session session;
 

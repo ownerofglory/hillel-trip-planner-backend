@@ -3,6 +3,7 @@
 .classpath
 .project
 .settings/
+.run
 
 .DS_Store
 
