@@ -1,0 +1,19 @@
+name: Hillel Tripplanner tomcat pipeline
+
+on:
+  push
+
+jobs:
+  deploy:
+    needs: build
+    runs-on: 'ubuntu-latest'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+      - name: Undeploy existing
+        run: mvn --batch-mode --update-snapshots cargo:undeploy -Dtomcat.host=${{ secrets.TOMCAT_URL }} -Dtomcat.user=${{ secrets.TOMCAT_USER }} -Dtomcat.password=${{ secrets.TOMCAT_PASSWORD }} -Dtomcat.managerUrl=${{ secrets.TOMCAT_MANAGER_URL }}
+      - name: Deploy existing
+        run: mvn --batch-mode --update-snapshots package cargo:deploy -Dtomcat.host=${{ secrets.TOMCAT_URL }} -Dtomcat.user=${{ secrets.TOMCAT_USER }} -Dtomcat.password=${{ secrets.TOMCAT_PASSWORD }} -Dtomcat.managerUrl=${{ secrets.TOMCAT_MANAGER_URL }}
