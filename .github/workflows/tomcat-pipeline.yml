@@ -1,8 +1,10 @@
 name: Hillel Tripplanner tomcat pipeline
 
 on:
-  push
-
+  push:
+    branches:
+      - main
+      -
 jobs:
   deploy:
     needs: build
