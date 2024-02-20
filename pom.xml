@@ -38,8 +38,6 @@
         <hamcrest.version>2.2</hamcrest.version>
         <json-path.version>2.9.0</json-path.version>
         <jakarta-servlet.version>6.1.0-M1</jakarta-servlet.version>
-        <cargo.deployable.default.groupId>${project.groupId}</cargo.deployable.default.groupId>
-        <cargo.deployable.web.artifactId>hillel-trip-planner-web</cargo.deployable.web.artifactId>
     </properties>
 
     <dependencyManagement>
