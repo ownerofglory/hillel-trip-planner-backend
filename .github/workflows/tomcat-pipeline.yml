@@ -6,6 +6,7 @@ on:
       - main
       - bugfix/*
 
+
 jobs:
   deploy:
     runs-on: 'ubuntu-latest'
