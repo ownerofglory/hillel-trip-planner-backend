@@ -1,4 +1,4 @@
-name: Hillel Tripplanner tomcat pipeline
+name: Hillel trip planner tomcat pipeline
 
 on:
   push:
