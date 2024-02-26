@@ -11,10 +11,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import ua.ithillel.tripplanner.config.ControllerTestConfig;
 import ua.ithillel.tripplanner.exception.GlobalExceptionHandler;
 import ua.ithillel.tripplanner.model.dto.*;
-import ua.ithillel.tripplanner.model.entity.Hotel;
-import ua.ithillel.tripplanner.model.entity.HotelBooking;
-import ua.ithillel.tripplanner.model.entity.HotelRoom;
-import ua.ithillel.tripplanner.model.entity.User;
 
 import java.io.IOException;
 import java.io.InputStream;
