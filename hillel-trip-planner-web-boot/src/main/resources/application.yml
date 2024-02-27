@@ -3,5 +3,12 @@ server:
   servlet:
     context-path: /hillel-trip-planner-web/api
 
+spring:
+  datasource:
+    driver-class-name: ${MYSQL_DRIVER}
+    username: ${MYSQL_USER}
+    password: ${MYSQL_PASSWORD}
+    url: ${MYSQL_URL}
+
 
 

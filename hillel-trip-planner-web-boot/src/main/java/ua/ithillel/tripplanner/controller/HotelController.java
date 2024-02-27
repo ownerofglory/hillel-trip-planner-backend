@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import ua.ithillel.tripplanner.exception.EntityNotFoundException;
 import ua.ithillel.tripplanner.model.dto.HotelDTO;
 import ua.ithillel.tripplanner.model.dto.HotelListItemDTO;
+import ua.ithillel.tripplanner.service.HotelSearchService;
 import ua.ithillel.tripplanner.service.HotelService;
 
 import java.util.List;
@@ -16,6 +17,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class HotelController {
     private final HotelService hotelService;
+    private final HotelSearchService hotelSearchService;
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
@@ -38,7 +40,9 @@ public class HotelController {
     ResponseEntity<List<HotelListItemDTO>> searchHotels(@RequestParam("limit") int limit,
                                                        @RequestParam("page") int page) {
 
-        final List<HotelListItemDTO> hotels = hotelService.searchHotels(limit, page);
+//        final List<HotelListItemDTO> hotels = hotelService.searchHotels(limit, page);
+
+        final List<HotelListItemDTO> hotels = hotelSearchService.searchHotels(limit, page);
 
         return ResponseEntity.ok(hotels);
     }

@@ -20,6 +20,7 @@
         <module>hillel-trip-planner-service</module>
         <module>hillel-trip-planner-web</module>
         <module>hillel-trip-planner-web-boot</module>
+        <module>hillel-trip-planner-data-jpa</module>
     </modules>
 
     <properties>
