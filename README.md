@@ -18,10 +18,17 @@
 
 - Spring Framework version 6.1.3 or higher
 - Hibernate ORM version 6.4.2.Final
-- Apache Tomcat (for deploying the web application)
+- Apache Tomcat version 10
 
 ## Local Development
 
+### Build
+
+To build the project, execute the following command:
+
+```bash
+./mvnw --batch-mode clean package 
+```
 ### Testing
 
 To run tests, execute the following command:
@@ -44,6 +51,13 @@ Environment variables
 Using Tomcat Smart Plugin for IntelliJ IDEA
 
 Consider using the Tomcat Smart Plugin for IntelliJ IDEA to simplify the local deployment process. This plugin allows you to manage and deploy applications to Tomcat directly from your IDE, saving you time and effort.
+
+Сan also be done manually:
+- Build the WAR file using the command mentioned above.
+- Copy the generated WAR file (usually found in the target folder) to the webapps directory of your Tomcat installation.
+- Start the Tomcat server by executing the startup script (./bin/startup.sh for Unix or ./bin/startup.bat for Windows).
+- Access the application at http://localhost:8080/hillel-trip-planner-web in your web browser, where hillel-trip-planner-web is the name of the WAR file.
+
 
 ### Deployment remote 
 
