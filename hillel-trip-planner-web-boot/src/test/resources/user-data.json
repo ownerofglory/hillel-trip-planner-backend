@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "name": "Oleksandr Ivanov",
+    "email": "oleksandr.ivanov@example.com",
+    "birthDate": "1990-04-12"
+  },
+  {
+    "id": 2,
+    "name": "Kateryna Petrova",
+    "email": "kateryna.petrova@example.com",
+    "birthDate": "1985-07-24"
+  },
+  {
+    "id": 3,
+    "name": "Vladyslav Melnyk",
+    "email": "vladyslav.melnyk@example.com",
+    "birthDate": "1992-11-30"
+  },
+  {
+    "id": 4,
+    "name": "Sofia Kovalenko",
+    "email": "sofia.kovalenko@example.com",
+    "birthDate": "1988-02-15"
+  },
+  {
+    "id": 5,
+    "name": "Yaroslav Tkachenko",
+    "email": "yaroslav.tkachenko@example.com",
+    "birthDate": "1993-05-05"
+  },
+  {
+    "id": 6,
+    "name": "Anastasia Shevchenko",
+    "email": "anastasia.shevchenko@example.com",
+    "birthDate": "1989-09-19"
+  },
+  {
+    "id": 7,
+    "name": "Ihor Kuzmenko",
+    "email": "ihor.kuzmenko@example.com",
+    "birthDate": "1994-12-12"
+  },
+  {
+    "id": 8,
+    "name": "Olena Bondarenko",
+    "email": "olena.bondarenko@example.com",
+    "birthDate": "1987-03-08"
+  },
+  {
+    "id": 9,
+    "name": "Dmytro Kravchenko",
+    "email": "dmytro.kravchenko@example.com",
+    "birthDate": "1991-10-21"
+  },
+  {
+    "id": 10,
+    "name": "Natalia Savchenko",
+    "email": "natalia.savchenko@example.com",
+    "birthDate": "1995-01-14"
+  }
+]

@@ -1,0 +1,35 @@
+version: '3.1'
+
+services:
+
+  hillel-trip-planner:
+    build: .
+    ports:
+      - "8090:8090"
+    environment:
+      MYSQL_PASSWORD: password
+      MYSQL_DRIVER: "com.mysql.cj.jdbc.Driver"
+      MYSQL_URL: "jdbc:mysql://db:3306/tripplannerdb"
+      MYSQL_USER: root
+    depends_on:
+      - db
+
+
+  db:
+    platform: linux/x86_64
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'db'
+      MYSQL_USER: 'user'
+      MYSQL_PASSWORD: 'password'
+      MYSQL_ROOT_PASSWORD: 'password'
+    ports:
+      - '3306:3306'
+    volumes:
+      - mysql_my-db:/var/lib/mysql
+
+
+volumes:
+  mysql_my-db:
+    external: true
