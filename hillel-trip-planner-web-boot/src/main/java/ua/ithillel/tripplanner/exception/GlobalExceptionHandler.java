@@ -35,4 +35,22 @@ public class GlobalExceptionHandler {
 
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorDTO);
     }
+
+    @ExceptionHandler(FileUploadException.class)
+    public ResponseEntity<ErrorDTO> handleFileUploadException(FileUploadException e) {
+        final String message = e.getMessage();
+        final ErrorDTO errorDTO = new ErrorDTO();
+        errorDTO.setMessage(message);
+
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorDTO);
+    }
+
+    @ExceptionHandler(InvalidImageException.class)
+    public ResponseEntity<ErrorDTO> handleInvalidImage(InvalidImageException e) {
+        final String message = e.getMessage();
+        final ErrorDTO errorDTO = new ErrorDTO();
+        errorDTO.setMessage(message);
+
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorDTO);
+    }
 }

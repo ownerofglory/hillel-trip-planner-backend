@@ -20,8 +20,8 @@ public class ImageUploadServiceDefaultTest extends ServiceTestParent {
     @Mock
     private FileUploadClient fileUploadClient;
     private ImageUploadServiceDefault imageUploadService;
-    private MultipartFile validImageFile;
-    private MultipartFile invalidImageFile;
+    private MockMultipartFile validImageFile;
+    private MockMultipartFile invalidImageFile;
 
 
     @BeforeEach
@@ -31,7 +31,7 @@ public class ImageUploadServiceDefaultTest extends ServiceTestParent {
         imageUploadService = new ImageUploadServiceDefault(fileUploadClient);
 
         byte[] validFileContent = "Mock image content".getBytes();
-        validImageFile = new MockMultipartFile("test.jpg", "test.jpg", "image/jpeg", validFileContent);
+        validImageFile = new MockMultipartFile("valid.jpg", "test.jpg", "image/jpeg", validFileContent);
 
         byte[] invalidFileContent = "Mock text file content".getBytes();
         invalidImageFile = new MockMultipartFile("test.txt", "test.txt", "text/plain", invalidFileContent);
