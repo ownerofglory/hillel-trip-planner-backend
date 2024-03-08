@@ -24,8 +24,17 @@
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
+            <groupId>ua.ithillel.tripplanner</groupId>
+            <artifactId>hillel-trip-planner-security</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
@@ -50,6 +59,25 @@
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
             <scope>test</scope>
+        </dependency>
+<!--
+     Explicit dependencies:
+         - spring-security-core: 6.2.2
+         - spring-web: 6.1.4
+
+         added due to vulnerabilities in previous version:
+         - CVE-2024-22234 7.4 Improper Access Control vulnerability with High severity found
+         - CVE-2024-22243 8.1 Vulnerability with High severity found
+ -->
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-core</artifactId>
+            <version>6.2.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>6.1.4</version>
         </dependency>
     </dependencies>
 

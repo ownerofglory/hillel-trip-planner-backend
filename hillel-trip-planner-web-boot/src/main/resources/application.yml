@@ -5,3 +5,5 @@ server:
 
 
 
+jwt:
+  secret: 7e9Cnqb9C8td0jEimHRZFaGwcgUfck0MTXkkRYaOfVA=

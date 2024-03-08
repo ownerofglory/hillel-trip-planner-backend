@@ -22,10 +22,15 @@ public class User {
     private String email;
     @Column(name = "birth_date")
     private Date birthDate;
+    @Column(name = "password_hash")
+    private String passwordHash;
 
     @OneToOne(mappedBy = "user", cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
     private Address address;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<HotelBooking> bookings;
+
+    @OneToMany(mappedBy = "user", cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
+    private List<UserRole> roles;
 }
