@@ -48,6 +48,7 @@ public class HibernateTestConfig {
         hiberConfig.addAnnotatedClass(HotelBooking.class);
         hiberConfig.addAnnotatedClass(HotelRoom.class);
         hiberConfig.addAnnotatedClass(User.class);
+        hiberConfig.addAnnotatedClass(UserRole.class);
 
         final StandardServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
                 .applySettings(hiberConfig.getProperties())
