@@ -18,6 +18,6 @@ jobs:
       - name: Make Maven Wrapper Executable
         run: chmod +x mvnw
       - name: Undeploy existing
-        run: ./mvnw --batch-mode  --update-snapshots cargo:undeploy -Dtomcat.host=${{ secrets.TOMCAT_URL }} -Dtomcat.user=${{ secrets.TOMCAT_USER }} -Dtomcat.password=${{ secrets.TOMCAT_PASSWORD }} -Dtomcat.managerUrl=${{ secrets.TOMCAT_MANAGER_URL }}
+        run: ./mvnw --batch-mode --update-snapshots cargo:undeploy -Dtomcat.host=${{ secrets.TOMCAT_URL }} -Dtomcat.user=${{ secrets.TOMCAT_USER }} -Dtomcat.password=${{ secrets.TOMCAT_PASSWORD }} -Dtomcat.managerUrl=${{ secrets.TOMCAT_MANAGER_URL }}
       - name: Deploy existing
-        run: ./mvnw --batch-mode --update-snapshots -Dmaven.test.skip package cargo:deploy -Dtomcat.host=${{ secrets.TOMCAT_URL }} -Dtomcat.user=${{ secrets.TOMCAT_USER }} -Dtomcat.password=${{ secrets.TOMCAT_PASSWORD }} -Dtomcat.managerUrl=${{ secrets.TOMCAT_MANAGER_URL }}
+        run: ./mvnw --batch-mode --update-snapshots package cargo:deploy -Dtomcat.host=${{ secrets.TOMCAT_URL }} -Dtomcat.user=${{ secrets.TOMCAT_USER }} -Dtomcat.password=${{ secrets.TOMCAT_PASSWORD }} -Dtomcat.managerUrl=${{ secrets.TOMCAT_MANAGER_URL }}
