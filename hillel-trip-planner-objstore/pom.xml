@@ -50,5 +50,19 @@
             <groupId>io.minio</groupId>
             <artifactId>minio</artifactId>
         </dependency>
+        <!--
+    Explicit dependencies:
+     - spring-security-core: 6.2.2
+     - spring-web: 6.1.4
+
+     added due to vulnerabilities in previous version of transitive dependency:
+     - CVE-2024-26308 7.5 Allocation of Resources Without Limits or Throttling vulnerability with High severity found
+     - CVE-2024-25710 5.5 Loop with Unreachable Exit Condition ("Infinite Loop") vulnerability with Medium severity found
+-->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-compress</artifactId>
+            <version>1.26.0</version>
+        </dependency>
     </dependencies>
 </project>
