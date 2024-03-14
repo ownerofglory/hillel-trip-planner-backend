@@ -1,4 +1,4 @@
-# Hillel Trip Planner server side
+# Hillel Trip Planner backend
 
 ### Application that enable users to plan and book various aspects of their trip, including hotels, car rentals, flights, restaurants, and sightseeing activities.
 
@@ -44,10 +44,16 @@ To run tests, execute the following command:
 
 Environment variables
 
-    MYSQL_DRIVER=com.mysql.cj.jdbc.SDriver
+    MYSQL_DRIVER=com.mysql.cj.jdbc.Driver
     MYSQL_URL=jdbc:mysql://<host>:<port>/<database>
     MYSQL_USER=<username>
     MYSQL_PASSWORD=<password>
+    AUTH_ERROR_REDIRECT_URL=<url>
+    AUTH_SUCCESS_REDIRECT_URL=<url>
+    GOOGLE_CLIENT_ID=<url>
+    GOOGLE_CLIENT_SECRET=<url>
+    GOOGLE_TOKEN_URL=<url>
+    GOOGLE_AUTH_GRANT_TYPE=<grant>
 
 ### Deployment local
 
