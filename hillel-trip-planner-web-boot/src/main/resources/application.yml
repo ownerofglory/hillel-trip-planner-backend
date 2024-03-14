@@ -1,7 +1,13 @@
 server:
-  port: 8090
+  port: ${SERVER_PORT:8090}
   servlet:
     context-path: /hillel-trip-planner-web/api
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: info,health
 
 spring:
   security:
