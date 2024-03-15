@@ -8,15 +8,15 @@
 # You can also reference a tag or branch, but the action may change without warning.
 
 name: Amazon ECS deployment
-on:
-  workflow_dispatch:
-    inputs:
-      region:
-        description: 'Region'
-        required: true
-        type: choice
-        options:
-          - eu-central-1
+on: [push]
+#  workflow_dispatch:
+#    inputs:
+#      region:
+#        description: 'Region'
+#        required: true
+#        type: choice
+#        options:
+#          - eu-central-1
 
 env:
   AWS_REGION: eu-central-1
