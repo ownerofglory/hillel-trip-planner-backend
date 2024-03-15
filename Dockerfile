@@ -5,6 +5,8 @@ FROM openjdk:17-slim
 # COPY wait-for-it.sh ./wait-for-it.sh
 # RUN chmod +x wait-for-it.sh
 
+RUN echo 'Workaround'
+
 COPY hillel-trip-planner-web-boot/target/hillel-trip-planner-web-boot-1.0-SNAPSHOT-jar-with-dependencies.jar /app/app.jar
 
 # for local development
