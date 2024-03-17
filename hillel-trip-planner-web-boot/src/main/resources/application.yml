@@ -3,6 +3,12 @@ server:
   servlet:
     context-path: /hillel-trip-planner-web/api
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: info,health
+
 spring:
   security:
     oauth2:
