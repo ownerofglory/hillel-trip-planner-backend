@@ -38,12 +38,12 @@ jobs:
 
       - name: Replace environment variables in task definition
         run: |
-          sed -i 's|${{ secrets.MYSQL_PASSWORD }}|'"${{ secrets.MYSQL_PASSWORD }}"'|g' .aws/ecs-task-def.json
-          sed -i 's|${{ secrets.GOOGLE_CLIENT_SECRET }}|'"${{ secrets.GOOGLE_CLIENT_SECRET }}"'|g' .aws/ecs-task-def.json
-          sed -i 's|${{ secrets.MYSQL_URL }}|'"${{ secrets.MYSQL_URL }}"'|g' .aws/ecs-task-def.json
-          sed -i 's|${{ secrets.JWT_SECRET }}|'"${{ secrets.JWT_SECRET }}"'|g' .aws/ecs-task-def.json
-          sed -i 's|${{ secrets.MYSQL_USER }}|'"${{ secrets.MYSQL_USER }}"'|g' .aws/ecs-task-def.json
-          sed -i 's|${{ secrets.GOOGLE_CLIENT_ID }}|'"${{ secrets.GOOGLE_CLIENT_ID }}"'|g' .aws/ecs-task-def.json
+          sed -i 's|MYSQL_PASSWORD_PLACEHOLDER|'"${{ secrets.MYSQL_PASSWORD }}"'|g' .aws/ecs-task-def.json
+          sed -i 's|GOOGLE_CLIENT_SECRET_PLACEHOLDER|'"${{ secrets.GOOGLE_CLIENT_SECRET }}"'|g' .aws/ecs-task-def.json
+          sed -i 's|MYSQL_URL_PLACEHOLDER|'"${{ secrets.MYSQL_URL }}"'|g' .aws/ecs-task-def.json
+          sed -i 's|JWT_SECRET_PLACEHOLDER|'"${{ secrets.JWT_SECRET }}"'|g' .aws/ecs-task-def.json
+          sed -i 's|MYSQL_USER_PLACEHOLDER|'"${{ secrets.MYSQL_USER }}"'|g' .aws/ecs-task-def.json
+          sed -i 's|GOOGLE_CLIENT_ID_PLACEHOLDER|'"${{ secrets.GOOGLE_CLIENT_ID }}"'|g' .aws/ecs-task-def.json
 
 
       - name: Configure AWS credentials
