@@ -33,7 +33,7 @@ public class GoogleAuthSuccessHandler implements AuthenticationSuccessHandler {
         OAuth2User principal = (OAuth2User) authentication.getPrincipal();
         String email = principal.getAttribute("email");
         String fullName = principal.getAttribute("name");
-        User user;
+        User user = null;
 
         try {
             user = userRepo.findByEmail(email);
@@ -52,8 +52,11 @@ public class GoogleAuthSuccessHandler implements AuthenticationSuccessHandler {
                     .build();
 
             User savedUser = userRepo.save(user);
+            user = savedUser;
 
-            String token = jwtUtil.generateToken(new HillelUserDetails(savedUser));
+
+        } finally {
+            String token = jwtUtil.generateToken(new HillelUserDetails(user));
 
             response.sendRedirect(SUCCESS_REDIRECT_URL + "?jwt=" + token);
         }

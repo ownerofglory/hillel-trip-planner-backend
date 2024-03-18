@@ -54,6 +54,8 @@ public class SecurityConfig {
     private GoogleAccessResponseClient googleAccessResponseClient;
     @Autowired
     private GoogleOidcUserService googleOidcUserService;
+    @Autowired
+    private GoogleOAuth2UserService googleOAuth2UserService;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -87,7 +89,9 @@ public class SecurityConfig {
                                         token.accessTokenResponseClient(googleAccessResponseClient))
 
                                 .userInfoEndpoint(user ->
-                                        user.oidcUserService(googleOidcUserService)));
+                                        user
+                                                .userService(googleOAuth2UserService)
+                                                .oidcUserService(googleOidcUserService)));
 
         http.addFilterBefore(hillelJwtFilter(),
                 UsernamePasswordAuthenticationFilter.class);
