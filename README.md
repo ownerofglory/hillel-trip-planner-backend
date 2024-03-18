@@ -96,6 +96,7 @@ ECS Fargate architecture
 - Create ECS task definition
   - Copy and paste the task definition as JSON into the file [.aws/ecs-task-def.json](./`.aws/ecs-task-def.json)
   - Replace sensitive data with placeholders, consider placweholders in the deployment pipeline [.github/workflows/ecs-deployment-pipeline.yml](./.github/workflows/ecs-deployment-pipeline.yml)
+- Create ECS service
 - Create repo variable and secrets defined in the pipeline definition [.github/workflows/ecs-deployment-pipeline.yml](./.github/workflows/ecs-deployment-pipeline.yml)
 - Deployment pipeline is triggered manually
  
