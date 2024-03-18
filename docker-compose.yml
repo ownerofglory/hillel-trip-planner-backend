@@ -11,6 +11,14 @@ services:
       MYSQL_DRIVER: "com.mysql.cj.jdbc.Driver"
       MYSQL_URL: "jdbc:mysql://db:3306/tripplannerdb"
       MYSQL_USER: root
+      AUTH_ERROR_REDIRECT_URL: <url>
+      AUTH_SUCCESS_REDIRECT_URL: <url>
+      GOOGLE_CLIENT_ID: <url>
+      GOOGLE_CLIENT_SECRET: <url>
+      GOOGLE_TOKEN_URL: https://oauth2.googleapis.com/token
+      GOOGLE_AUTH_GRANT_TYPE: <grant>
+      GOOGLE_REDIRECT_URL: <url>
+      JWT_SECRET: <url>
     depends_on:
       - db
 
