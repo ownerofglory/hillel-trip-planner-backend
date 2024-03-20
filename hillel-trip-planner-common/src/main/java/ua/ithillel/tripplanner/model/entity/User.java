@@ -25,6 +25,7 @@ public class User {
     private Date birthDate;
     @Column(name = "password_hash")
     private String passwordHash;
+    private String provider;
 
     @OneToOne(mappedBy = "user", cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
     private Address address;

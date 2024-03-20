@@ -1,0 +1,62 @@
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+
+# GitHub recommends pinning actions to a commit SHA.
+# To get a newer version, you will need to update the SHA.
+# You can also reference a tag or branch, but the action may change without warning.
+
+name: Amazon ECS deployment
+on:
+  workflow_dispatch:
+    inputs:
+      region:
+        description: 'Region'
+        required: true
+        type: choice
+        options:
+          - eu-central-1
+
+env:
+  AWS_REGION: eu-central-1
+  ECR_REPOSITORY: ${{ vars.DOCKER_REPO }}
+  ECS_SERVICE: ${{ vars.ECS_SERVICE_NAME }}
+  ECS_CLUSTER: ${{ vars.ECS_CLUSTER_NAME }}
+  ECS_TASK_DEFINITION: .aws/ecs-task-def.json
+  CONTAINER_NAME: ${{ vars.ECS_CONTAINER_NAME }}
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    environment: production
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Replace environment variables in task definition
+        run: |
+          sed -i 's|MYSQL_PASSWORD_PLACEHOLDER|'"${{ secrets.MYSQL_PASSWORD }}"'|g' .aws/ecs-task-def.json
+          sed -i 's|GOOGLE_CLIENT_SECRET_PLACEHOLDER|'"${{ secrets.GOOGLE_CLIENT_SECRET }}"'|g' .aws/ecs-task-def.json
+          sed -i 's|MYSQL_URL_PLACEHOLDER|'"${{ secrets.MYSQL_URL }}"'|g' .aws/ecs-task-def.json
+          sed -i 's|JWT_SECRET_PLACEHOLDER|'"${{ secrets.JWT_SECRET }}"'|g' .aws/ecs-task-def.json
+          sed -i 's|MYSQL_USER_PLACEHOLDER|'"${{ secrets.MYSQL_USER }}"'|g' .aws/ecs-task-def.json
+          sed -i 's|GOOGLE_CLIENT_ID_PLACEHOLDER|'"${{ secrets.GOOGLE_CLIENT_ID }}"'|g' .aws/ecs-task-def.json
+
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@0e613a0980cbf65ed5b322eb7a1e075d28913a83
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Deploy Amazon ECS task definition
+        uses: aws-actions/amazon-ecs-deploy-task-definition@df9643053eda01f169e64a0e60233aacca83799a
+        with:
+          task-definition: ${{ env.ECS_TASK_DEFINITION }}
+          service: ${{ env.ECS_SERVICE }}
+          cluster: ${{ env.ECS_CLUSTER }}
+          wait-for-service-stability: false

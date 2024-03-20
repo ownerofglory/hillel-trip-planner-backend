@@ -1,8 +1,27 @@
 server:
-  port: 8090
+  port: ${SERVER_PORT:8090}
   servlet:
     context-path: /hillel-trip-planner-web/api
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: info,health
+
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: ${GOOGLE_CLIENT_ID}
+            client-secret: ${GOOGLE_CLIENT_SECRET}
+            authorization-grant-type: ${GOOGLE_AUTH_GRANT_TYPE}
+            redirect-uri: ${GOOGLE_REDIRECT_URL:http://localhost:8090/hillel-trip-planner-web/api/auth/google/callback}
+        provider:
+          google:
+            token-uri: ${GOOGLE_TOKEN_URL:https://oauth2.googleapis.com/token}
 
 
 jwt:
